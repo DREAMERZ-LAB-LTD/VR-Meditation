@@ -1,1 +1,1 @@
-{"_rootDirectory":"D:\\0LY\\Unity Projects\\VR Applications\\VR-Meditation\\Assets\\Plugins","_alwaysSave":[]}
+{"_rootDirectory":"C:\\Users\\Dreamerz Lab VR\\Documents\\OLY\\VR-Meditation\\Assets\\Plugins","_alwaysSave":[]}
