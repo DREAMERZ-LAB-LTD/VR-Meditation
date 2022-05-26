@@ -215,7 +215,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300001, guid: 1dd706bb85d8aef4e83a6229dbd62c36, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 33a0d552717ab4c2e87a77c856d9aaf3, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 236da4b84bba246d283010b1b2dcf28a, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -391,7 +391,7 @@ MonoBehaviour:
   near: 0.25
   far: 200
   volumetricRadius: 0
-  reverbSend: 0
+  reverbSend: 10
   enableRfl: 1
 --- !u!64 &537433174
 MeshCollider:

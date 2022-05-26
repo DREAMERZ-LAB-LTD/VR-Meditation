@@ -31,7 +31,7 @@ public abstract class TeleportTargetHandler : TeleportSupport
 	public LayerMask AimCollisionLayerMask;
 
 	protected readonly LocomotionTeleport.AimData AimData = new LocomotionTeleport.AimData();
-	private readonly Action _startAimAction;
+	private readonly System.Action _startAimAction;
 
 	protected TeleportTargetHandler()
 	{
