@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class Health : MonoBehaviour
+public class Health : Debuggable
 {
     public interface IHealth
     {
@@ -31,12 +31,8 @@ public class Health : MonoBehaviour
     public UnityEvent OnDeath;
     private IHealth[] damageableResponses = { };
 
-
-
-	private void Start()
-    {
-        Initialize();
-    }
+	private void Awake() =>Initialize();
+    
 
     /// <summary>
     /// Reset the health status as new
@@ -75,10 +71,15 @@ public class Health : MonoBehaviour
     { 
         if (isDeath || damager == null) return;
       
+        if (damager)
+            ShowMessage("Take Damage from " + damager.name);
+
         health -= damageRate;
         isDeath = health <= 0;
         UpdateHealthBar();
 
+        ShowMessage("Damage rate =  " + damageRate + " New health = " + health);
+        ShowMessage(" Is death = " + isDeath);
 
         //event firing
         if (isDeath)
@@ -111,6 +112,9 @@ public class Health : MonoBehaviour
         isDeath = health <= 0;
         UpdateHealthBar();
 
+        ShowMessage("Force Death Activated");
+        ShowMessage(" Is death = " + isDeath);
+
         foreach (var damageResponse in damageableResponses)
             if (damageResponse != null)
                 damageResponse.OnDeath(damager);
@@ -128,6 +132,7 @@ public class Health : MonoBehaviour
     public void AddHealth(int amount)
     {
         health = Mathf.Clamp(health + amount, 0, maxHealth);
+        ShowMessage("Health added = " + amount);
         OnAdding.Invoke();
     }
 

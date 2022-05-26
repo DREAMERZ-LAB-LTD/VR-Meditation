@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class LookAt : MonoBehaviour
+public class LookAt : Debuggable
 {
     [System.Flags] public enum Axis
     { 
@@ -12,14 +12,6 @@ public class LookAt : MonoBehaviour
     [SerializeField] private Axis axis = Axis.X  | Axis.Y | Axis.Z;
     [SerializeField] private float speed = 1.00f;
     [SerializeField] protected Transform lookTarget;
-    protected virtual void LateUpdate()
-    {
-        if (lookTarget)
-        { 
-            Vector3 lookDirection = GetLookDirection(lookTarget.position);
-            transform.forward = Vector3.Lerp(transform.forward, lookDirection, speed * Time.deltaTime);
-        }
-    }
     /// <summary>
     /// return look direction 
     /// </summary>
@@ -41,20 +33,31 @@ public class LookAt : MonoBehaviour
     
     }
 
-  
     public void ChangeLookTarget(Transform newLookTarget)
     {
+        if (lookTarget && newLookTarget)
+            ShowMessage("LookTarget = '" + lookTarget.name + "' Switch to = '" + newLookTarget.name + "'");
         lookTarget = newLookTarget;
+    }
+  
+    protected virtual void LateUpdate()
+    {
+        if (lookTarget)
+        { 
+            Vector3 lookDirection = GetLookDirection(lookTarget.position);
+            transform.forward = Vector3.Lerp(transform.forward, lookDirection, speed * Time.fixedDeltaTime);
+        }
     }
 
 
 #if UNITY_EDITOR
     private void OnDrawGizmosSelected()
     {
-        if (lookTarget == null && enabled)
-        { 
-            Debug.Log("<color=cyan>Look Target field is null</color>");
-        }
+        if (lookTarget == null)
+            ShowMessage("<color=cyan>Look Target field is null</color>");
+
+        if (useDebug)
+            LateUpdate();
     }
 #endif
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Blender : MonoBehaviour
+public class Blender : Debuggable
 {
     #region Macros
     public interface IBlender
@@ -41,7 +41,7 @@ public class Blender : MonoBehaviour
     [SerializeField] private LoopType loopType = LoopType.None;
     [SerializeField] private InterfaceResponse interfaceResponse = 0x00;
     [SerializeField] private float speed = 1;
-    private List<IBlender> rensponses = new List<IBlender>();
+    private List<IBlender> interfaces = new List<IBlender>();
 
     [Header("Callback Events")]
     public UnityEvent m_OnBlendBegin;
@@ -77,24 +77,48 @@ public class Blender : MonoBehaviour
     {
         if (InterfaceResponse.Self == (interfaceResponse & InterfaceResponse.Self))
         {
-            var selfRensponses = GetComponents<IBlender>();
-            if (selfRensponses.Length > 0)
-                rensponses.AddRange(selfRensponses);
+            var selfInterfaces = GetComponents<IBlender>();
+            if (selfInterfaces.Length > 0)
+                interfaces.AddRange(selfInterfaces);
+
+            ShowMessage("Self interface respone count + " + selfInterfaces.Length);
         }
 
         if (InterfaceResponse.Parent == (interfaceResponse & InterfaceResponse.Parent))
         {
-            var parentRensponses = GetComponentsInParent<IBlender>();
-            if (parentRensponses.Length > 0)
-                rensponses.AddRange(parentRensponses);
+            if (transform.parent)
+            {
+                var parentInterfaces = transform.parent.GetComponents<IBlender>();
+                if (parentInterfaces.Length > 0)
+                    interfaces.AddRange(parentInterfaces);
+
+                ShowMessage("Parent interface respone count + " + parentInterfaces.Length);
+            }
         }
         if (InterfaceResponse.Child == (interfaceResponse & InterfaceResponse.Child))
         {
-            var childRensponses = GetComponentsInChildren<IBlender>();
-            if (childRensponses.Length > 0)
-                rensponses.AddRange(childRensponses);
+            List<IBlender> chidInterfaces = new List<IBlender>();
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                var child = transform.GetChild(i);
+                if (child)
+                {
+                    var cInterfaces = child.GetComponents<IBlender>();
+                    if (cInterfaces.Length > 0)
+                        chidInterfaces.AddRange(cInterfaces);
+                }
+            }
+
+            if (chidInterfaces.Count > 0)
+                interfaces.AddRange(chidInterfaces);
+
+            ShowMessage("Child interface respone count + " + chidInterfaces.Count);
         }
+
+        ShowMessage("Total interface respone count + " + interfaces.Count);
     }
+
     public void StartBlending()
     {
         StopAllCoroutines();
@@ -143,8 +167,8 @@ public class Blender : MonoBehaviour
         {
             OnBlendEnd();
 
-            if (rensponses != null)
-                foreach (var response in rensponses)
+            if (interfaces != null)
+                foreach (var response in interfaces)
                     response.OnEnd();
 
             m_OnBlendEnd.Invoke();
@@ -155,8 +179,8 @@ public class Blender : MonoBehaviour
     {
         OnBlendBegin();
 
-        if (rensponses != null)
-            foreach (var response in rensponses)
+        if (interfaces != null)
+            foreach (var response in interfaces)
                 response.OnBegin();
 
         m_OnBlendBegin.Invoke();
@@ -167,9 +191,10 @@ public class Blender : MonoBehaviour
             t += Time.fixedDeltaTime * speed;
 
             OnBlending(t);
+            ShowMessage("Blender Value is = " + t + " of 1");
 
-            if (rensponses != null)
-                foreach (var response in rensponses)
+            if (interfaces != null)
+                foreach (var response in interfaces)
                     response.OnBlending(t);
 
             UpdateLoop(ref t);
