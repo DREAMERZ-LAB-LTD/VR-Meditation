@@ -6,7 +6,13 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public enum UpdateMode
+    [System.Flags] private enum ExecuteSource
+    {
+        OnAwake = 0x01,
+        OnEnable = 0010,
+        OnStart = 0100,
+    }
+    private enum UpdateMode
     {
         Discreate,
         InASecond,

@@ -1,16 +1,25 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Blender : MonoBehaviour
 {
+    #region Macros
     public interface IBlender
     {
         void OnBegin();
         void OnEnd();
         void OnBlending(float t);
     }
-    public enum LoopType
+    [System.Flags] private enum ExecuteSource
+    {
+        OnAwake = 0x01,
+        OnEnable = 0010,
+        OnStart = 0100,
+    }
+
+    private enum LoopType
     {
         None,
         Both,
@@ -18,20 +27,31 @@ public class Blender : MonoBehaviour
         AntiClockwise
     }
 
+    [System.Flags] private enum InterfaceResponse
+    {
+        Self    = 0x01,
+        Parent  = 0010,
+        Child   = 0100,
+    }
+    #endregion Macros
+
+    #region Propertys
     [Header("Blender Setup")]
-    [SerializeField] private ExecuteSource executeSource = 0x00;
+    [SerializeField] private ExecuteSource executeSource = ExecuteSource.OnStart;
     [SerializeField] private LoopType loopType = LoopType.None;
+    [SerializeField] private InterfaceResponse interfaceResponse = 0x00;
     [SerializeField] private float speed = 1;
-    private IBlender[] rensponses = null;
+    private List<IBlender> rensponses = new List<IBlender>();
 
     [Header("Callback Events")]
-    public UnityEvent OnBlendBegin;
-    public UnityEvent OnBlendEnd;
+    public UnityEvent m_OnBlendBegin;
+    public UnityEvent m_OnBlendEnd;
+    #endregion Propertys
 
     #region Unity Message
     private void Awake()
-    { 
-         rensponses = GetComponents<IBlender>();
+    {
+        Initialize();
         if (ExecuteSource.OnAwake == (executeSource & ExecuteSource.OnAwake))
             StartBlending();
     }
@@ -48,16 +68,45 @@ public class Blender : MonoBehaviour
     }
 
     private void OnDisable() => StopAllCoroutines();
-    
+
 
     #endregion Unity Message
 
-    #region Blending
+    #region Custom Method
+    private void Initialize()
+    {
+        if (InterfaceResponse.Self == (interfaceResponse & InterfaceResponse.Self))
+        {
+            var selfRensponses = GetComponents<IBlender>();
+            if (selfRensponses.Length > 0)
+                rensponses.AddRange(selfRensponses);
+        }
+
+        if (InterfaceResponse.Parent == (interfaceResponse & InterfaceResponse.Parent))
+        {
+            var parentRensponses = GetComponentsInParent<IBlender>();
+            if (parentRensponses.Length > 0)
+                rensponses.AddRange(parentRensponses);
+        }
+        if (InterfaceResponse.Child == (interfaceResponse & InterfaceResponse.Child))
+        {
+            var childRensponses = GetComponentsInChildren<IBlender>();
+            if (childRensponses.Length > 0)
+                rensponses.AddRange(childRensponses);
+        }
+    }
     public void StartBlending()
     {
         StopAllCoroutines();
         StartCoroutine(BlendingRoutine());
     }
+
+    protected virtual void OnBlendBegin() { }
+    protected virtual void OnBlendEnd() { }
+    protected virtual void OnBlending(float t) { }
+#endregion Custom Method
+
+    #region Blending Mechanics
     private void UpdateLoop(ref float t)
     {
         bool isComplete = false;
@@ -92,24 +141,33 @@ public class Blender : MonoBehaviour
 
         if (isComplete)
         {
+            OnBlendEnd();
+
             if (rensponses != null)
                 foreach (var response in rensponses)
                     response.OnEnd();
-            OnBlendEnd.Invoke();
+
+            m_OnBlendEnd.Invoke();
         }
     }
 
     private IEnumerator BlendingRoutine()
     {
+        OnBlendBegin();
+
         if (rensponses != null)
             foreach (var response in rensponses)
                 response.OnBegin();
 
+        m_OnBlendBegin.Invoke();
+
         float t = 0;
-        OnBlendBegin.Invoke();
         while (true)
         {
             t += Time.fixedDeltaTime * speed;
+
+            OnBlending(t);
+
             if (rensponses != null)
                 foreach (var response in rensponses)
                     response.OnBlending(t);
@@ -119,5 +177,5 @@ public class Blender : MonoBehaviour
             yield return null;
         }
     }
-    #endregion Blending
+    #endregion Blending Mechanics
 }

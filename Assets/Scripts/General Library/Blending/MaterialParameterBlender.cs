@@ -1,7 +1,5 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Blender))]
-
 public class MaterialParameterBlender : MaterialParameter, Blender.IBlender
 {
     [Header("Blending Value Setup")]

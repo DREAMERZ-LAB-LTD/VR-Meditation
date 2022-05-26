@@ -3,6 +3,15 @@ using UnityEngine.Events;
 
 public class Action : MonoBehaviour
 {
+    [System.Flags] protected enum ExecuteAndTerminateSource
+    {
+        OnAwake = 0x00000001,
+        OnStart = 0x00000010,
+        OnEnable = 0x00000100,
+        OnDisable = 0x00001000,
+        OnDestroy = 0x00010000,
+    }
+
     [SerializeField, Tooltip("Event invoking source")]
     protected ExecuteAndTerminateSource executeSource = 0x00000000;
 

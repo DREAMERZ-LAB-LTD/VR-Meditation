@@ -1,27 +1,29 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Blender))]
-
-public class TransformBlender : MonoBehaviour, Blender.IBlender
+public class TransformBlender : Blender
 {
-    [System.Flags]
-    public enum BlendMode
+    [System.Flags] private enum BlendMode
     { 
-        Transforming = 0x00000001,
-        Rotating     = 0x00000010,
-        Scaling      = 0x00000100
+        Transforming = 0x01,
+        Rotating     = 0x10,
+        Scaling      = 0100
     }
 
+    [Header("Blend Parameter Setup")]
     [SerializeField] private BlendMode blendMode = BlendMode.Rotating;
     [SerializeField] private Transform a, b;
  
     public void SetPointA(Transform a) { this.a = a; }
     public void SetPointB(Transform b) { this.b = b; }
    
-    public void OnBegin() { }
-    public void OnEnd() { }
-    public void OnBlending(float t)
+    protected override void OnBlending(float t)
     {
+        if (a == null || b == null)
+        {
+
+            return;
+        }
+
         if ((blendMode & BlendMode.Rotating) == BlendMode.Rotating)
             transform.localEulerAngles = Vector3.Lerp(a.localEulerAngles, b.localEulerAngles, t);
 
