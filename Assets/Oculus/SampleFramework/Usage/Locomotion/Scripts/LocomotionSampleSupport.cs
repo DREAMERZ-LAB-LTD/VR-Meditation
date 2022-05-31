@@ -170,6 +170,7 @@ public class LocomotionSampleSupport : MonoBehaviour
 
     void SetupTeleportDefaults()
     {
+        return;
         TeleportController.enabled = true;
         //lc.PlayerController.SnapRotation = true;
         lc.PlayerController.RotationEitherThumbstick = false;
