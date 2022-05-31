@@ -427,7 +427,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// This event is raised when entering the Ready state. The initial use for this is for the input handler to start 
 	/// processing input in order to eventually set the TeleportIntention to Aim when the user requests it.
 	/// </summary>
-	public event Action EnterStateReady;
+	public event System.Action EnterStateReady;
 
 	/// <summary>
 	/// This coroutine will be running while the component is in the Ready state.
@@ -497,7 +497,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// <summary>
 	/// This event is raised when the user begins aiming for a target location for a teleport.
 	/// </summary>
-	public event Action EnterStateAim;
+	public event System.Action EnterStateAim;
 
 	/// <summary>
 	/// Aim and Target handlers are responsible for populating the AimData with the relevant aim data,
@@ -523,7 +523,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// This event is raised when the aim state is exited. This is typically used by aim visualizers to
 	/// deactivate any visual effects related to aiming.
 	/// </summary>
-	public event Action ExitStateAim;
+	public event System.Action ExitStateAim;
 
 	/// <summary>
 	/// This coroutine will be running while the aim state is active. The teleport destination will become active,
@@ -573,7 +573,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// This event is raised when aiming for a teleport destination is aborted. It can be
 	/// useful for cleaning up effects that may have been triggered when entering the Aim state.
 	/// </summary>
-	public event Action EnterStateCancelAim;
+	public event System.Action EnterStateCancelAim;
 
 	/// <summary>
 	/// This coroutine will be executed when the aim state is cancelled.
@@ -600,7 +600,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// <summary>
 	/// This event is raised when the system enteres the PreTeleport state.
 	/// </summary>
-	public event Action EnterStatePreTeleport;
+	public event System.Action EnterStatePreTeleport;
 
 	/// <summary>
 	/// This coroutine will be active while the system is in the PreTeleport state.
@@ -646,7 +646,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// triggered by the target selection which needs to be cleaned up, or perhaps a different visual 
 	/// effect needs to be triggered when a teleport is aborted.
 	/// </summary>
-	public event Action EnterStateCancelTeleport;
+	public event System.Action EnterStateCancelTeleport;
 
 	/// <summary>
 	/// This coroutine will be executed when the pre-teleport state is unabled to transition to the teleporting state.
@@ -682,7 +682,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// * Blink - Fade the camera to black, teleport, then fade back up. 
 	/// * Warp - Translate the camera over some fixed amount of time to the new destination.
 	/// </summary>
-	public event Action EnterStateTeleporting;
+	public event System.Action EnterStateTeleporting;
 
 	/// <summary>
 	/// This coroutine will yield until IsTransitioning back to false, which will be immediately unless there
@@ -717,7 +717,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// <summary>
 	/// This event will occur after the teleport has completed.
 	/// </summary>
-	public event Action EnterStatePostTeleport;
+	public event System.Action EnterStatePostTeleport;
 
 	/// <summary>
 	/// The PostTeleport coroutine is typically just a single frame state that deactivates the destination 

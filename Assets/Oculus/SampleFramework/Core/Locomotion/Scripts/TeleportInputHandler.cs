@@ -19,8 +19,8 @@ using System.Collections;
 /// </summary>
 public abstract class TeleportInputHandler : TeleportSupport
 {
-	private readonly Action _startReadyAction;
-	private readonly Action _startAimAction;
+	private readonly System.Action _startReadyAction;
+	private readonly System.Action _startAimAction;
 
 	protected TeleportInputHandler()
 	{

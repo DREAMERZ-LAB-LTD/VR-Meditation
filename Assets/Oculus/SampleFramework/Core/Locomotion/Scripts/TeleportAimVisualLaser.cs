@@ -20,8 +20,8 @@ public class TeleportAimVisualLaser : TeleportSupport
 	[Tooltip("This prefab will be instantiated when the aim visual is awakened, and will be set active when the user is aiming, and deactivated when they are done aiming.")]
 	public LineRenderer LaserPrefab;
 
-	private readonly Action _enterAimStateAction;
-	private readonly Action _exitAimStateAction;
+	private readonly System.Action _enterAimStateAction;
+	private readonly System.Action _exitAimStateAction;
 	private readonly Action<LocomotionTeleport.AimData> _updateAimDataAction;
 	private LineRenderer _lineRenderer;
 	private Vector3[] _linePoints;

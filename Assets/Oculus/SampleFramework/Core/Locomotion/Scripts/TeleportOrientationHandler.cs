@@ -16,7 +16,7 @@ using System.Collections;
 /// </summary>
 public abstract class TeleportOrientationHandler : TeleportSupport
 {
-	private readonly Action _updateOrientationAction;
+	private readonly System.Action _updateOrientationAction;
 	private readonly Action<LocomotionTeleport.AimData> _updateAimDataAction;
 	protected LocomotionTeleport.AimData AimData;
 
