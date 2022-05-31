@@ -49,7 +49,7 @@ public class SceneLoader : MonoBehaviour
 
     #region AdditiveLoader
 #pragma warning disable 0618
-    public void LoadWithLoading(string SceneName)
+    public void LoadAsync(string SceneName)
     {
         StopLoader();
         loadingLoader = StartCoroutine(LoadingTo(LoadingSceneName, SceneName));

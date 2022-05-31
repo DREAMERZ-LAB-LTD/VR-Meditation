@@ -1915,7 +1915,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6551674144300424696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6551674145307404915}
@@ -1993,7 +1993,7 @@ MonoBehaviour:
   usePositionTracking: 1
   useRotationTracking: 1
   useIPDInPositionTracking: 1
-  resetTrackerOnLoad: 0
+  resetTrackerOnLoad: 1
   AllowRecenter: 1
   LateControllerUpdate: 1
   LateLatching: 0
@@ -2273,7 +2273,6 @@ GameObject:
   - component: {fileID: 6551674144678169145}
   - component: {fileID: 6551674144678169127}
   - component: {fileID: 6551674144678169146}
-  - component: {fileID: 34396891867175888}
   - component: {fileID: 34396891867175889}
   m_Layer: 0
   m_Name: PlayerController
@@ -2330,22 +2329,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
---- !u!114 &34396891867175888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6551674144678169123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f07515ada089df47868559a20dd6783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  quitKey: 27
-  fadeInTexture: {fileID: 0}
-  speedRotationIncrement: 0.05
-  layerName: Default
 --- !u!114 &34396891867175889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3061,7 +3044,7 @@ GameObject:
   - component: {fileID: 6551674145177182591}
   m_Layer: 4
   m_Name: coll_hands:b_l_index3
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3088,8 +3071,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6551674145181573209}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   m_Radius: 0.0075
   m_Height: 0.025
   m_Direction: 2
@@ -4897,7 +4880,7 @@ GameObject:
   - component: {fileID: 6551674145556457696}
   m_Layer: 4
   m_Name: hands_coll:b_r_index3
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4924,8 +4907,8 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6551674145570206814}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
+  m_IsTrigger: 1
+  m_Enabled: 1
   m_Radius: 0.01
   m_Height: 0.05
   m_Direction: 2
@@ -5326,7 +5309,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AimCollisionLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 64
 --- !u!114 &6551674145828244069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5725,6 +5708,10 @@ PrefabInstance:
     - target: {fileID: 6240830540069792897, guid: ba88c62d76193c34b90e597be07e9b9d, type: 3}
       propertyPath: m_Name
       value: Facing Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 6240830540069792897, guid: ba88c62d76193c34b90e597be07e9b9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6240830540069792958, guid: ba88c62d76193c34b90e597be07e9b9d, type: 3}
       propertyPath: m_RootOrder
