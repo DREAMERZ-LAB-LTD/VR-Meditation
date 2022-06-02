@@ -1,26 +1,29 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HierarchyTreeController : MonoBehaviour
+namespace GeneralLibrary
 {
-    [SerializeField]
-    public Transform target;
-    [SerializeField] private UnityEvent OnExecute;
-    private void Awake()
+    public class HierarchyTreeController : MonoBehaviour
     {
-        if (target == null)
-            target = transform;
-    }
-    public void DeattachChildren()
-    {
-        target.DetachChildren();
-        OnExecute.Invoke();
-    }
+        [SerializeField]
+        public Transform target;
+        [SerializeField] private UnityEvent OnExecute;
+        private void Awake()
+        {
+            if (target == null)
+                target = transform;
+        }
+        public void DeattachChildren()
+        {
+            target.DetachChildren();
+            OnExecute.Invoke();
+        }
 
-    public void SetParent()
-    {
-        transform.SetParent(target);
-        OnExecute.Invoke();
-    }
+        public void SetParent()
+        {
+            transform.SetParent(target);
+            OnExecute.Invoke();
+        }
 
+    }
 }

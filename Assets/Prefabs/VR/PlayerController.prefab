@@ -2274,6 +2274,7 @@ GameObject:
   - component: {fileID: 6551674144678169127}
   - component: {fileID: 6551674144678169146}
   - component: {fileID: 34396891867175889}
+  - component: {fileID: 388189449}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -2288,8 +2289,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6551674144678169123}
-  m_LocalRotation: {x: 0, y: -0.99893385, z: 0, w: 0.04616517}
-  m_LocalPosition: {x: -3.9866982, y: 1.12, z: 2.8810349}
+  m_LocalRotation: {x: 0, y: -0.9174459, z: 0, w: 0.39786068}
+  m_LocalPosition: {x: 4.44427, y: 1.12, z: -2.4834144}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6551674144300424697}
@@ -2298,7 +2299,7 @@ Transform:
   - {fileID: 6671243112327885801}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -174.708, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -133.111, z: 0}
 --- !u!136 &6551674144678169127
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2341,6 +2342,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b71d1996d67004241a3b69960856ffcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &388189449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551674144678169123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 847d8b0d968d4a14c89d7508f54c0db7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnableLinearMovement: 0
+  EnableRotation: 0
+  HMDRotatesPlayer: 1
+  RotationEitherThumbstick: 0
+  RotationAngle: 0
+  Speed: 0
+  CameraRig: {fileID: 0}
 --- !u!1 &6551674145181538693
 GameObject:
   m_ObjectHideFlags: 0
@@ -5831,7 +5851,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Event Pointer (VR)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3415701482197689625, guid: 709d9bad7df46a446b48f9654eea4946, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 709d9bad7df46a446b48f9654eea4946, type: 3}
 --- !u!4 &6671243112327885801 stripped
 Transform:

@@ -213,6 +213,20 @@ public class OVRScreenFade : MonoBehaviour
 		SetMaterialAlpha();
 	}
 
+	public void Fade(float t)
+	{
+		if (t < 1 )
+		{
+			animatedFadeAlpha = Mathf.Lerp(0, 1, t);
+			SetMaterialAlpha();
+		}
+		else
+		{ 
+			animatedFadeAlpha = 1;
+			SetMaterialAlpha();
+		}
+	}
+
 	/// <summary>
 	/// Update material alpha. UI fade and the current fade due to fade in/out animations (or explicit control)
 	/// both affect the fade. (The max is taken)

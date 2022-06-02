@@ -1,17 +1,20 @@
 using UnityEngine;
 
-public class Debuggable : MonoBehaviour
+namespace GeneralLibrary
 {
-#if UNITY_EDITOR
-    [Header("Debug Setup")]
-    [SerializeField] protected bool useDebug = false;
-#endif
-
-    protected void ShowMessage(string message)
+    public class Debuggable : MonoBehaviour
     {
 #if UNITY_EDITOR
-        if (useDebug)
-            Debug.Log("<color=cyan>" + message + " </color>");
+        [Header("Debug Setup")]
+        [SerializeField] protected bool useDebug = false;
 #endif
+
+        protected void ShowMessage(string message)
+        {
+#if UNITY_EDITOR
+            if (useDebug)
+                Debug.Log("<color=cyan>" + message + " </color>");
+#endif
+        }
     }
 }

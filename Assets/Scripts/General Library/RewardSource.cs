@@ -1,21 +1,25 @@
 
 using UnityEngine;
 
-public class RewardSource : MonoBehaviour
-{
-    [SerializeField] private int givenScore = 1;
-    private ScoreManager scoreManager;
- 
-    protected void Awake()
-    {
-        scoreManager = FindObjectOfType<ScoreManager>();
-    }
 
-    public void GiveScore()
+namespace GeneralLibrary
+{
+    public class RewardSource : MonoBehaviour
     {
-        if (enabled)
-        { 
-            scoreManager.UpdateScore(givenScore);
+        [SerializeField] private int givenScore = 1;
+        private ScoreManager scoreManager;
+
+        protected void Awake()
+        {
+            scoreManager = FindObjectOfType<ScoreManager>();
+        }
+
+        public void GiveScore()
+        {
+            if (enabled)
+            {
+                scoreManager.UpdateScore(givenScore);
+            }
         }
     }
 }

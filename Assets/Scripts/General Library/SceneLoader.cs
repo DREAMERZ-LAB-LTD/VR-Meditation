@@ -4,109 +4,131 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour
+namespace GeneralLibrary
 {
-    [SerializeField] private string LoadingSceneName = "LoadingScene";
-    [SerializeField] private float delayBetweenLoading = 3;
-    private Coroutine loadingLoader = null;
-
-    public UnityEvent OnSceneChanging;
-
-
-    public void Load(int index)
+    public class SceneLoader : MonoBehaviour
     {
-        OnSceneChanging.Invoke();
-        SceneManager.LoadScene(index);
-    }
-    public void Load(string sceneName)
-    {
-        OnSceneChanging.Invoke();
-        SceneManager.LoadScene(sceneName);
-    }
-    public void ReloadScene()
-    {
-        OnSceneChanging.Invoke();
-        int sceneNo = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(sceneNo);
-    }
+        [SerializeField] private string LoadingSceneName = "LoadingScene";
+        [SerializeField] private float delayBetweenLoading = 3;
+        private Coroutine loadingLoader = null;
 
-    public void LoadNextScene()
-    {
-        OnSceneChanging.Invoke();
-        int sceneNo = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(++sceneNo);
-    }
-    public void LoadNextWithLoop()
-    {
-        OnSceneChanging.Invoke();
-        int sceneNo = SceneManager.GetActiveScene().buildIndex;
-        ++sceneNo;
-
-        if (sceneNo >= SceneManager.sceneCountInBuildSettings)
-            sceneNo = 0;
-        SceneManager.LoadScene(sceneNo);
-    }
-
-    #region AdditiveLoader
-#pragma warning disable 0618
-    public void LoadAsync(string SceneName)
-    {
-        StopLoader();
-        loadingLoader = StartCoroutine(LoadingTo(LoadingSceneName, SceneName));
+        public UnityEvent OnSceneChanging;
 
 
-        IEnumerator LoadingTo(string loadingSceneName, string nextSceneName)
+        public void Load(int index)
         {
-            float loadingTime = delayBetweenLoading;
-            //load loading scene additivly
-            SceneManager.LoadSceneAsync(loadingSceneName, LoadSceneMode.Additive);
-            int index = SceneManager.GetAllScenes().Length - 1;
-            Scene loadingScene = SceneManager.GetSceneAt(index);
-
-            while (!loadingScene.isLoaded)//wait for ready to load our "Loading" Scene
-            {
-                yield return null;
-            }
-
-            DontDestroyOnLoad(gameObject);
-
-            //set Loading scene as a root scene in the hierarchy
-            Scene previousScene = SceneManager.GetActiveScene();
-            SceneManager.SetActiveScene(loadingScene);
-            SceneManager.UnloadScene(previousScene);
-
-
-            //Make Loading Delay to load next scene
-            loadingTime += Time.time;
-            while (Time.time < loadingTime)
-            {
-                yield return null;
-            }
-
-            //load Target Scene Additivly
-            SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
-            index = SceneManager.GetAllScenes().Length - 1;
-            Scene nextScene = SceneManager.GetSceneAt(index);
-
-
-            while (!nextScene.isLoaded)//wait for ready to load our Target Scene
-            {
-                yield return null;
-            }
             OnSceneChanging.Invoke();
-            SceneManager.SetActiveScene(nextScene);
-            SceneManager.UnloadScene(loadingScene);
-
-            Destroy(gameObject);
-
+            SceneManager.LoadScene(index);
         }
-    }
+        public void Load(string sceneName)
+        {
+            OnSceneChanging.Invoke();
+            SceneManager.LoadScene(sceneName);
+        }
+        public void ReloadScene()
+        {
+            OnSceneChanging.Invoke();
+            int sceneNo = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(sceneNo);
+        }
 
-    private void StopLoader()
-    {
-        if (loadingLoader != null)
-            StopCoroutine(loadingLoader);
-    }
+        public void LoadNextScene()
+        {
+            OnSceneChanging.Invoke();
+            int sceneNo = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(++sceneNo);
+        }
+        public void LoadNextWithLoop()
+        {
+            OnSceneChanging.Invoke();
+            int sceneNo = SceneManager.GetActiveScene().buildIndex;
+            ++sceneNo;
+
+            if (sceneNo >= SceneManager.sceneCountInBuildSettings)
+                sceneNo = 0;
+            SceneManager.LoadScene(sceneNo);
+        }
+
+        public void LoadAsync(string sceneName)
+        {
+            StartCoroutine(Load());
+            IEnumerator Load()
+            {
+                var screenFade = FindObjectOfType<OVRScreenFade>();
+                var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+
+                while (!asyncOperation.isDone)
+                {
+                    if (screenFade)
+                        screenFade.Fade(asyncOperation.progress);
+                    yield return null;
+
+                    Debug.Log("Progress " + asyncOperation.progress);
+                }
+            }
+        }
+
+        #region AdditiveLoader
+#pragma warning disable 0618
+        public void LoadAdditive(string SceneName)
+        {
+            StopLoader();
+            loadingLoader = StartCoroutine(LoadingTo(LoadingSceneName, SceneName));
+
+
+            IEnumerator LoadingTo(string loadingSceneName, string nextSceneName)
+            {
+                float loadingTime = delayBetweenLoading;
+                //load loading scene additivly
+                SceneManager.LoadSceneAsync(loadingSceneName, LoadSceneMode.Additive);
+                int index = SceneManager.GetAllScenes().Length - 1;
+                Scene loadingScene = SceneManager.GetSceneAt(index);
+
+                while (!loadingScene.isLoaded)//wait for ready to load our "Loading" Scene
+                {
+                    yield return null;
+                }
+
+                DontDestroyOnLoad(gameObject);
+
+                //set Loading scene as a root scene in the hierarchy
+                Scene previousScene = SceneManager.GetActiveScene();
+                SceneManager.SetActiveScene(loadingScene);
+                SceneManager.UnloadScene(previousScene);
+
+
+                //Make Loading Delay to load next scene
+                loadingTime += Time.time;
+                while (Time.time < loadingTime)
+                {
+                    yield return null;
+                }
+
+                //load Target Scene Additivly
+                SceneManager.LoadSceneAsync(nextSceneName, LoadSceneMode.Additive);
+                index = SceneManager.GetAllScenes().Length - 1;
+                Scene nextScene = SceneManager.GetSceneAt(index);
+
+
+                while (!nextScene.isLoaded)//wait for ready to load our Target Scene
+                {
+                    yield return null;
+                }
+                OnSceneChanging.Invoke();
+                SceneManager.SetActiveScene(nextScene);
+                SceneManager.UnloadScene(loadingScene);
+
+                Destroy(gameObject);
+
+            }
+        }
+
+        private void StopLoader()
+        {
+            if (loadingLoader != null)
+                StopCoroutine(loadingLoader);
+        }
 #pragma warning restore
-    #endregion AdditiveLoader
+        #endregion AdditiveLoader
+    }
 }

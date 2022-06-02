@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.17590836, g: 0.22013327, b: 0.30246288, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -235,6 +235,7 @@ MonoBehaviour:
   m_StopNaN: 0
   m_Dithering: 0
   m_ClearDepth: 1
+  m_AllowXRRendering: 1
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
@@ -314,6 +315,7 @@ Light:
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
 --- !u!4 &1660419056
@@ -408,17 +410,17 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   colorGradientTexture: {fileID: 0}
   shallowColor: {r: 0, g: 0.7725491, b: 0.62352943, a: 0.5019608}
-  deepColor: {r: 0, g: 0.26003912, b: 0.6509434, a: 1}
-  colorDepth: 0.65
-  horizonColor: {r: 0, g: 0.2274068, b: 0.8, a: 1}
-  horizonDistance: 20
+  deepColor: {r: 0, g: 0.2599811, b: 0.6509434, a: 1}
+  colorDepth: 0.61
+  horizonColor: {r: 0, g: 0.22734877, b: 0.8, a: 1}
+  horizonDistance: 1.2
   shoreFade: 1
   shoreColor: {r: 1, g: 1, b: 1, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20387968, g: 0.30975968, b: 0.517647, a: 0}
+  underwaterColor: {r: 0.20382467, g: 0.30970165, b: 0.517647, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -442,7 +444,7 @@ MonoBehaviour:
   surfaceFoamHeightMask: 0
   surfaceFoamHeightMaskSmoothness: 0
   enableHeightMask: 0
-  foamShadowStrength: 0.45
+  foamShadowStrength: 1
   foamShadowDepth: 10
   surfaceFoamShadowProjection: 15
   intersectionFoamShadowProjection: 4.6
@@ -488,6 +490,7 @@ MonoBehaviour:
   waterUVs: 1
   hideComponents: 1
   enableFoamShadows: 1
+  enableRefraction: 0
   meshRenderer: {fileID: 3813236235995708526}
   meshFilter: {fileID: 7482694825421045911}
   material: {fileID: 2100000, guid: 8aaa66d84e5e3734c9d80569abe197e6, type: 2}

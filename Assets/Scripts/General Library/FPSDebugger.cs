@@ -1,35 +1,38 @@
 using UnityEngine;
 
-public class FPSDebugger : MonoBehaviour
+namespace GeneralLibrary
 {
-    float timeA;
-    public int fps;
-    public int lastFPS;
-    public GUIStyle textStyle;
-    // Use this for initialization
-    void Start()
+    public class FPSDebugger : MonoBehaviour
     {
-        timeA = Time.timeSinceLevelLoad;
-        DontDestroyOnLoad(this);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log(Time.timeSinceLevelLoad+" "+timeA);
-        if (Time.timeSinceLevelLoad - timeA <= 1)
+        float timeA;
+        public int fps;
+        public int lastFPS;
+        public GUIStyle textStyle;
+        // Use this for initialization
+        void Start()
         {
-            fps++;
-        }
-        else
-        {
-            lastFPS = fps + 1;
             timeA = Time.timeSinceLevelLoad;
-            fps = 0;
+            DontDestroyOnLoad(this);
         }
-    }
-    void OnGUI()
-    {
-        GUI.Label(new Rect(450, 5, 30, 30), "" + lastFPS, textStyle);
+
+        // Update is called once per frame
+        void Update()
+        {
+            //Debug.Log(Time.timeSinceLevelLoad+" "+timeA);
+            if (Time.timeSinceLevelLoad - timeA <= 1)
+            {
+                fps++;
+            }
+            else
+            {
+                lastFPS = fps + 1;
+                timeA = Time.timeSinceLevelLoad;
+                fps = 0;
+            }
+        }
+        void OnGUI()
+        {
+            GUI.Label(new Rect(450, 5, 30, 30), "" + lastFPS, textStyle);
+        }
     }
 }
