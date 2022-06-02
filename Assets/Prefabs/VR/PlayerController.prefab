@@ -2275,6 +2275,7 @@ GameObject:
   - component: {fileID: 6551674144678169146}
   - component: {fileID: 34396891867175889}
   - component: {fileID: 388189449}
+  - component: {fileID: 901044819}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -2361,6 +2362,25 @@ MonoBehaviour:
   RotationAngle: 0
   Speed: 0
   CameraRig: {fileID: 0}
+--- !u!114 &901044819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6551674144678169123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5233584f06de71149a10d75371444195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneLoadOptions:
+  - sceneIndex: 0
+    startPosition: {x: 4.84, y: 1.12, z: 0.6647911}
+    startYRotation: -90.166
+  - sceneIndex: 1
+    startPosition: {x: 40.94, y: 3.022, z: -6.353214e-13}
+    startYRotation: 90
 --- !u!1 &6551674145181538693
 GameObject:
   m_ObjectHideFlags: 0

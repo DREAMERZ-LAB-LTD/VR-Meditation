@@ -6,14 +6,14 @@ using TMPro;
 
 namespace GeneralLibrary
 {
-    public class Timer : MonoBehaviour
+    public class Timer : Debuggable
     {
         [System.Flags]
         private enum ExecuteSource
         {
-            OnAwake = 0x01,
-            OnEnable = 0010,
-            OnStart = 0100,
+            OnAwake  = 0x01,
+            OnEnable = 0x10,
+            OnStart  = 0100,
         }
         private enum UpdateMode
         {
@@ -148,6 +148,8 @@ namespace GeneralLibrary
             time = 0;
             StopTimer();
             OnTimeStart.Invoke();
+
+            ShowMessage("Timer Starting");
             activeTimer = StartCoroutine(Counter());
         }
 
@@ -156,6 +158,7 @@ namespace GeneralLibrary
             if (activeTimer != null)
             {
                 StopCoroutine(activeTimer);
+                ShowMessage("Timer Stoped");
                 OnTimerStop.Invoke();
             }
         }
@@ -170,16 +173,22 @@ namespace GeneralLibrary
         {
             bool complete = time >= targetTime;
             float timeOffset = Time.time;
+
+            ShowMessage("Timer Started");
+
             while (!complete)
             {
                 while (isPaused)
+                { 
+                    ShowMessage("Timer Paused");
                     yield return null;
+                }
 
 
                 switch (updateMode)
                 {
-
                     case UpdateMode.Discreate:
+                        ShowMessage("Timer Updating with 'Discreate' mode");
                         yield return new WaitForSeconds(targetTime);
                         time = targetTime;
                         complete = true;
@@ -188,12 +197,14 @@ namespace GeneralLibrary
                     case UpdateMode.InASecond:
                         time++;
                         complete = time > targetTime - 1;
+                        ShowMessage("Timer Updating with 'InASecond' mode");
                         yield return new WaitForSeconds(1);
                         break;
 
                     case UpdateMode.Continuous:
                         time = Time.time - timeOffset;
                         complete = time >= targetTime - 1;
+                        ShowMessage("Timer Updating with 'Continuous' mode");
                         yield return null;
                         break;
                 }
@@ -201,6 +212,8 @@ namespace GeneralLibrary
                 UpdateStatus(time);
                 OnTimerUpdating.Invoke();
             }
+            
+            ShowMessage("Timer Finished");
             OnTimeOver.Invoke();
         }
         #endregion  Timer Routine

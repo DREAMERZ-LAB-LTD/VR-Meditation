@@ -38,10 +38,15 @@ namespace GeneralLibrary
 
         public void LookTo(Transform target)
         {
-            Vector3 lookDirection = GetLookDirection(lookTarget.position);
+            Vector3 lookDirection = GetLookDirection(target.position);
             transform.forward = lookDirection;
         }
-
+        public void Look()
+        {
+            Vector3 lookDirection = GetLookDirection(lookTarget.position);
+            transform.forward = lookDirection;
+            ShowMessage("Looking To  = " + lookTarget.name);
+        }
         public void ChangeTarget(Transform newLookTarget)
         {
             if (lookTarget && newLookTarget)
