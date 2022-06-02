@@ -36,7 +36,13 @@ namespace GeneralLibrary
 
         }
 
-        public void ChangeLookTarget(Transform newLookTarget)
+        public void LookTo(Transform target)
+        {
+            Vector3 lookDirection = GetLookDirection(lookTarget.position);
+            transform.forward = lookDirection;
+        }
+
+        public void ChangeTarget(Transform newLookTarget)
         {
             if (lookTarget && newLookTarget)
                 ShowMessage("LookTarget = '" + lookTarget.name + "' Switch to = '" + newLookTarget.name + "'");
