@@ -122,20 +122,29 @@ namespace GeneralLibrary
         private void OnEnable()
         {
             OnInitialize();
-            if ((executeSource & ExecuteSource.OnEnable) == executeSource)
+            if ((executeSource & ExecuteSource.OnEnable) == ExecuteSource.OnEnable)
+            {
+                ShowMessage("OnEnable " + name); 
                 StartTimer();
+            }
         }
         private void Awake()
         {
             OnInitialize();
-            if ((executeSource & ExecuteSource.OnAwake) == executeSource)
+            if ((executeSource & ExecuteSource.OnAwake) == ExecuteSource.OnAwake)
+            { 
+                ShowMessage("Awake " + name); 
                 StartTimer();
+            }
         }
 
         private void Start()
         {
-            if ((executeSource & ExecuteSource.OnStart) == executeSource)
+            if ((executeSource & ExecuteSource.OnStart) == ExecuteSource.OnStart)
+            { 
+                ShowMessage("Start " + name); 
                 StartTimer();
+            }
         }
         #endregion UnityMessage
 

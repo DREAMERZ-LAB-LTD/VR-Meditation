@@ -11,6 +11,15 @@ namespace GeneralLibrary
         [SerializeField] private Color colorA = Color.white, colorB = Color.green;
         [SerializeField] private Vector4 vectorA = Color.white, vectorB = Color.green;
 
+        public void SetFloatA(float a) => this.floatA = a;
+        public void SetFloatB(float b) => this.floatB = b;      
+        public void SetIntA(int a) => this.intA = a;
+        public void SetIntB(int b) => this.intB = b;  
+        public void SetColorA(Color a) => this.colorA = a;
+        public void SetColorB(Color b) => this.colorB = b;  
+        public void SetVectorA(Vector4 a) => this.vectorA = a;
+        public void SetVectorB(Vector4 b) => this.vectorB = b;
+
         public void OnBegin() { }
         public void OnEnd() { }
         public void OnBlending(float t)
@@ -31,5 +40,6 @@ namespace GeneralLibrary
                     break;
             }
         }
+
     }
 }
