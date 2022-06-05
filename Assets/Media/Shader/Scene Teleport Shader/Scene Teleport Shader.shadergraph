@@ -458,7 +458,7 @@
     },
     "m_SurfaceType": 1,
     "m_AlphaMode": 0,
-    "m_TwoSided": false,
+    "m_TwoSided": true,
     "m_AlphaClip": false,
     "m_CustomEditorGUI": ""
 }
@@ -667,7 +667,7 @@
     },
     "m_Name": "Cloud Control",
     "m_DefaultReferenceName": "Vector1_c9d93a4163474fbdafece65503b68229",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_Cloud_Control",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,
@@ -724,7 +724,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Smoothness",
     "m_StageCapability": 2,
-    "m_Value": 0.5,
+    "m_Value": 0.0,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }

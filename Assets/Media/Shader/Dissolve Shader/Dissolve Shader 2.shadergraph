@@ -563,7 +563,7 @@
     },
     "m_Name": "Dissolve Effect",
     "m_DefaultReferenceName": "Vector1_c0e9d3f005ff4ec9bc6db5d15d952fed",
-    "m_OverrideReferenceName": "",
+    "m_OverrideReferenceName": "_Dissolve_Effect",
     "m_GeneratePropertyBlock": true,
     "m_Precision": 0,
     "overrideHLSLDeclaration": false,

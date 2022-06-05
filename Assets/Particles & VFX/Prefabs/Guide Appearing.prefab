@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 250511867138393966}
   - component: {fileID: 251119461987351788}
   m_Layer: 0
-  m_Name: Orb Appearing
+  m_Name: Guide Appearing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
