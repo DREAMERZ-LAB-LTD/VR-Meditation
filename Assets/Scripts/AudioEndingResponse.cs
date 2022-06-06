@@ -7,7 +7,7 @@ public class AudioEndingResponse : MonoBehaviour
 {
     private AudioSource audioSource = null;
     public UnityEvent OnEnd;
-    private void Awake()
+    private void OnEnable()
     {
         audioSource = GetComponent<AudioSource>();
         if (audioSource)
