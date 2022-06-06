@@ -4,9 +4,9 @@ using UnityEngine.Events;
 public class FadeEffectController : MonoBehaviour
 {
     public UnityEvent OnFadeBegin;
-    private static bool initialized = false;
+    private static bool initialized = true;
 
-    private void Awake()
+    private void Start()
     {
         if (initialized)
             OnFadeBegin.Invoke();
