@@ -2278,7 +2278,7 @@ GameObject:
   - component: {fileID: 901044819}
   m_Layer: 0
   m_Name: PlayerController
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5257,7 +5257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6551674145828244078
 Transform:
   m_ObjectHideFlags: 0
@@ -5759,15 +5759,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e47fd5fe3e185874d9edbc2858a00d0e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e47fd5fe3e185874d9edbc2858a00d0e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e47fd5fe3e185874d9edbc2858a00d0e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e47fd5fe3e185874d9edbc2858a00d0e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5840,7 +5840,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148425207423}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4dc176403ee989479bcb614be262614, type: 3}
   m_Name: 
@@ -5979,6 +5979,10 @@ PrefabInstance:
     - target: {fileID: 438061684300467311, guid: 709d9bad7df46a446b48f9654eea4946, type: 3}
       propertyPath: m_Name
       value: Event Pointer (VR)
+      objectReference: {fileID: 0}
+    - target: {fileID: 438061684300467311, guid: 709d9bad7df46a446b48f9654eea4946, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3415701482197689625, guid: 709d9bad7df46a446b48f9654eea4946, type: 3}
