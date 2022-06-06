@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &9544342 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1977597878, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
+  m_PrefabInstance: {fileID: 1503983314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4dc176403ee989479bcb614be262614, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &35006897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8162,11 +8173,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8777750896531842238, guid: 77ece376520c58e4eb48f963665ee708, type: 3}
   m_PrefabInstance: {fileID: 1314115605}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1336031535 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132148620949533, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
-  m_PrefabInstance: {fileID: 1503983314}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1345942317
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9080,22 +9086,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2049058878, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
-      propertyPath: useDebug
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2049058878, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
-      propertyPath: materialSource
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2049058878, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
-      propertyPath: materials.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132147628660844, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6551674144678169123, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
       propertyPath: m_Name
       value: PlayerController
@@ -12813,8 +12803,6 @@ GameObject:
   - component: {fileID: 2090274282}
   - component: {fileID: 2090274283}
   - component: {fileID: 2090274286}
-  - component: {fileID: 2090274285}
-  - component: {fileID: 2090274284}
   m_Layer: 0
   m_Name: Menu Canvas
   m_TagString: Untagged
@@ -13012,80 +13000,6 @@ MonoBehaviour:
   onReleased:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2090274284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090274276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b19576981c65042a55a550723b26b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LoadingSceneName: LoadingScene
-  delayBetweenLoading: 3
-  OnSceneChanging:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2090274285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090274276}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 824411e16d0449142a3c315038ed22f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useDebug: 0
-  Description: 
-  targetTime: 2
-  executeSource: 0
-  updateMode: 0
-  showLeftTime: 0
-  preMessage: 
-  postMessage: 
-  statusRender: {fileID: 0}
-  OnTimeStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1336031535}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-  OnTimeOver:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2090274284}
-        m_TargetAssemblyTypeName: GeneralLibrary.SceneLoader, Assembly-CSharp
-        m_MethodName: LoadAsync
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Main Scene
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnTimerUpdating:
-    m_PersistentCalls:
-      m_Calls: []
-  OnTimerStop:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2090274286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13102,16 +13016,16 @@ MonoBehaviour:
   onPressed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2090274285}
-        m_TargetAssemblyTypeName: GeneralLibrary.Timer, Assembly-CSharp
-        m_MethodName: StartTimer
-        m_Mode: 1
+      - m_Target: {fileID: 9544342}
+        m_TargetAssemblyTypeName: SceneTransitionEffect, Assembly-CSharp
+        m_MethodName: LoadSceneWithFadeIn
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Main Scene
           m_BoolArgument: 1
         m_CallState: 2
   onReleased:
