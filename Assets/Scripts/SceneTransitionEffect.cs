@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
@@ -10,13 +9,12 @@ public class SceneTransitionEffect : MonoBehaviour
     [SerializeField] protected string parameter = string.Empty;
     private Material[] materials = null;
 
-    private static bool initialized = true;
+    private static bool initialized = false;
     private void Awake()
     {
         var rend = GetComponent<Renderer>();
         if (rend)
             materials = rend.materials;
-
 
         if (initialized)
             FadeOut();
@@ -62,5 +60,4 @@ public class SceneTransitionEffect : MonoBehaviour
         if (action != null)
             action.Invoke();
     }
-    
 }
