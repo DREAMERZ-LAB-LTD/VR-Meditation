@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor.SceneManagement;
 using UnityEditor;
@@ -25,3 +24,4 @@ public class AutoSave
         }
     }
 }
+#endif

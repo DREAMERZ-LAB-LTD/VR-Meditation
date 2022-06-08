@@ -164,7 +164,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// <param name="isValidDestination"></param>
 	/// <param name="position"></param>
 	/// <param name="rotation"></param>
-	public void OnUpdateTeleportDestination(bool isValidDestination, Vector3? position, Quaternion? rotation, Quaternion? landingRotation)
+	public virtual void OnUpdateTeleportDestination(bool isValidDestination, Vector3? position, Quaternion? rotation, Quaternion? landingRotation)
 	{
 		if (UpdateTeleportDestination != null)
 		{
@@ -769,7 +769,7 @@ public class LocomotionTeleport : MonoBehaviour
 	/// Note that warp transitions do not call this function and instead moves the game object 
 	/// during the transition time time.
 	/// </summary>
-	public void DoTeleport()
+	public virtual void DoTeleport()
 	{
 		var character = LocomotionController.CharacterController;
 		var characterTransform = character.transform;

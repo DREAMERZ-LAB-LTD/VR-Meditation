@@ -26,6 +26,16 @@ namespace GeneralLibrary
         [SerializeField] protected string parameter = string.Empty;
         [SerializeField] protected Material[] materials = null;
 
+        private void Awake()
+        {
+            if (materialSource == MaterialSource.FromRenderer)
+            {
+                var rend = GetComponent<Renderer>();
+                if (rend)
+                    materials = rend.materials;
+            }
+        }
+
         #region Virtual Methods
         protected virtual void SetFloat(float value)
         {
@@ -85,8 +95,7 @@ namespace GeneralLibrary
                     ShowMessage("No renderer found to access material property");
             }
 
-            if (useDebug)
-                if (materials.Length == 0)
+            if (materials.Length == 0)
                     ShowMessage("No material assigned");
         }
 #endif
