@@ -6032,9 +6032,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: e47fd5fe3e185874d9edbc2858a00d0e, type: 3}
+      propertyPath: m_PreserveUVs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e47fd5fe3e185874d9edbc2858a00d0e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7df336daac667c74892659a721e22fa3, type: 2}
+      objectReference: {fileID: 2100000, guid: 592f20914d6e09a4bae255d94da3d68e, type: 2}
     - target: {fileID: 919132149155446097, guid: e47fd5fe3e185874d9edbc2858a00d0e, type: 3}
       propertyPath: m_Name
       value: Fade
@@ -6068,7 +6072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeSpeed: 0.3
-  parameter: _Dissolve
+  parameter: _Progress
 --- !u!1001 &868606943679449008
 PrefabInstance:
   m_ObjectHideFlags: 0
