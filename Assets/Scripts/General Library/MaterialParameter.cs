@@ -85,13 +85,14 @@ namespace GeneralLibrary
 #if UNITY_EDITOR
         protected virtual void OnDrawGizmosSelected()
         {
+            if (!useDebug) return;
+
             if (materialSource == MaterialSource.FromRenderer)
             {
                 var rend = GetComponent<Renderer>();
                 if (rend)
                     materials = rend.materials;
                 else
-                    if (useDebug)
                     ShowMessage("No renderer found to access material property");
             }
 
