@@ -1319,7 +1319,7 @@ MonoBehaviour:
   executeSource: 10
   loopType: 0
   interfaceResponse: 1
-  speed: 0.5
+  speed: 1
   m_OnBlendBegin:
     m_PersistentCalls:
       m_Calls: []

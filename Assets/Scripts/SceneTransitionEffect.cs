@@ -25,7 +25,7 @@ public class SceneTransitionEffect : MonoBehaviour
         StopAllCoroutines();
         fadeIn.SetActive(true);
         fadeOut.SetActive(false);
-        StartCoroutine(FadingRoutine(fadeIn, 0, 1, ()=> SceneManager.LoadScene(sceneName)));
+        StartCoroutine(FadingRoutine(fadeIn, 0, 1, ()=> SceneManager.LoadSceneAsync(sceneName)));
     }
 
     public void FadeIn()
