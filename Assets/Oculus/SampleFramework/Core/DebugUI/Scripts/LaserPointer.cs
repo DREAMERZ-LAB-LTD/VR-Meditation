@@ -31,14 +31,14 @@ public class LaserPointer : OVRCursor
         set
         {
             _laserBeamBehavior = value;
-            if (laserBeamBehavior == LaserBeamBehavior.Off || laserBeamBehavior == LaserBeamBehavior.OnWhenHitTarget)
-            {
-                lineRenderer.enabled = false;
+            if (lineRenderer)
+            { 
+                if (laserBeamBehavior == LaserBeamBehavior.Off || laserBeamBehavior == LaserBeamBehavior.OnWhenHitTarget)
+                        lineRenderer.enabled = false;
+                else
+                        lineRenderer.enabled = true;
             }
-            else
-            {
-                lineRenderer.enabled = true;
-            }
+            
         }
         get
         {

@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Dissolve Mat V2
+  m_Name: Dissolve Mat V2 (Fade In)
   m_Shader: {fileID: -6465566751694194690, guid: 3b30b38bc84cc54459401c7253f1b63f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

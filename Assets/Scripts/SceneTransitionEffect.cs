@@ -7,15 +7,13 @@ public class SceneTransitionEffect : MonoBehaviour
 {
     [SerializeField] private float fadeSpeed = 1;
     [SerializeField] protected string parameter = string.Empty;
-    private Material[] materials = null;
+    [SerializeField] private GameObject fadeIn;
+    [SerializeField] private GameObject fadeOut;
 
     private static bool initialized = false;
+
     private void Awake()
     {
-        var rend = GetComponent<Renderer>();
-        if (rend)
-            materials = rend.materials;
-
         if (initialized)
             FadeOut();
         else
@@ -25,23 +23,38 @@ public class SceneTransitionEffect : MonoBehaviour
     public void LoadSceneWithFadeIn(string sceneName)
     {
         StopAllCoroutines();
-        StartCoroutine(FadingRoutine(0, 1, ()=> SceneManager.LoadScene(sceneName)));
+        fadeIn.SetActive(true);
+        fadeOut.SetActive(false);
+        StartCoroutine(FadingRoutine(fadeIn, 0, 1, ()=> SceneManager.LoadScene(sceneName)));
     }
 
     public void FadeIn()
     {
         StopAllCoroutines();
-        StartCoroutine(FadingRoutine(0, 1));
+
+        fadeIn.SetActive(true);
+        fadeOut.SetActive(false);
+        StartCoroutine(FadingRoutine(fadeIn, 0, 1));
     }
 
     public void FadeOut()
     {
         StopAllCoroutines();
-        StartCoroutine(FadingRoutine(1, 0));
+
+        fadeIn.SetActive(false);
+        fadeOut.SetActive(true);
+        StartCoroutine(FadingRoutine(fadeOut, 1, 0));
     }
 
-    private IEnumerator FadingRoutine(float start, float end, UnityAction action = null)
+    private IEnumerator FadingRoutine(GameObject fadeObj, float start, float end, UnityAction action = null)
     {
+        var rend = fadeObj.GetComponent<Renderer>();
+        if (rend == null)
+        {
+            yield break;
+        }
+
+        var fadeMat = rend.material;
         float t = 0;
 
         while (t < 1)
@@ -50,9 +63,7 @@ public class SceneTransitionEffect : MonoBehaviour
             t = Mathf.Clamp01(t);
             float fade = Mathf.Lerp(start, end, t);
 
-            foreach(var mat in materials)
-                if(mat)
-                    mat.SetFloat(parameter, fade);
+            fadeMat.SetFloat(parameter, fade);
             yield return null;
         }
 
