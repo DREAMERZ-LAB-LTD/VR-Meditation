@@ -2083,7 +2083,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   useDebug: 0
   Description: 
-  targetTime: 25
+  targetTime: 8.5
   executeSource: 16
   updateMode: 0
   showLeftTime: 0
@@ -2881,7 +2881,7 @@ MonoBehaviour:
   useInvSqr: 1
   near: 0.25
   far: 200
-  volumetricRadius: 5.5
+  volumetricRadius: 2
   reverbSend: 10
   enableRfl: 1
 --- !u!1 &1396670737

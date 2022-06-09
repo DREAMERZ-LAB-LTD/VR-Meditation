@@ -37,7 +37,7 @@ namespace GeneralLibrary
         }
 
         #region Virtual Methods
-        protected virtual void SetFloat(float value)
+        public virtual void SetFloat(float value)
         {
             if (materials != null)
             {
@@ -47,7 +47,7 @@ namespace GeneralLibrary
                 ShowMessage("Float value = '" + value + "' set successfull into the parameter '" + parameter + "' of this materials ");
             }
         }
-        protected virtual void Setint(int value)
+        public virtual void Setint(int value)
         {
             if (materials != null)
             {
