@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: White HDRI
-  m_Shader: {fileID: 106, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: -6465566751694194690, guid: 6151e5b25822de749b1606af8c63c39f, type: 3}
   m_ShaderKeywords: _SUNDISK_NONE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -108,6 +108,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_c1723822297f483a9c38c8380cd700b9: {r: 0, g: 0, b: 0, a: 0}
+    - Color_d095614fe899488797c95c1bdaab238c: {r: 0, g: 0, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
