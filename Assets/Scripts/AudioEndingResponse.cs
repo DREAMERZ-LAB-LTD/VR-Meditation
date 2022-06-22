@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,16 +10,22 @@ public class AudioEndingResponse : MonoBehaviour
     public UnityEvent OnEnd;
     private void OnEnable()
     {
+        StopAllCoroutines();
+        StartCoroutine(OnTrackEnd());
+    }
+
+    private IEnumerator OnTrackEnd()
+    {
         audioSource = GetComponent<AudioSource>();
         if (audioSource)
             if (audioSource.playOnAwake)
-            { 
-                var totalTrack = audioSource.clip.length;
-                Invoke(nameof(OnTrackEnd), totalTrack);
-            }   
+            {
+                var trackDuration = audioSource.clip.length;
+                yield return new WaitForSeconds(trackDuration);
+                
+                OnEnd.Invoke();
+            }
     }
-
-    private void OnTrackEnd() => OnEnd.Invoke();
 }
 
 
