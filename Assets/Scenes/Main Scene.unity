@@ -2823,6 +2823,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6551674145211333169, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
+      propertyPath: far clip plane
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 6665967234463309593, guid: 07d3c078d5b43364faa61c4df5bcdd3d, type: 3}
       propertyPath: m_IsActive
       value: 0
